@@ -1,5 +1,13 @@
 from flask import Blueprint, jsonify, request
-from app.services.sim_api import fetch_wells, fetch_readings, fetch_alerts, fetch_alert_log
+from app.services.sim_api import (
+    fetch_wells,
+    fetch_readings,
+    fetch_alerts,
+    fetch_alert_log,
+    create_well,
+    delete_well
+)
+
 
 sim_routes = Blueprint("sim_routes", __name__)
 
@@ -23,3 +31,24 @@ def get_sim_alerts():
 def get_sim_alert_log():
     alert_log = fetch_alert_log()
     return jsonify(alert_log)
+
+@sim_routes.route("/api/sim/wells", methods=["POST"])
+def post_sim_well():
+    data = request.get_json()
+    name = data.get("name")
+    location = data.get("location")
+
+    if not name or not location:
+        return jsonify({"error": "Missing name or location"}), 400
+    
+    result = create_well(name, location)
+    if result:
+        return jsonify(result), 201
+    return jsonify({"error": "Failed to create well"}), 500
+
+@sim_routes.route("/api/sim/wells/<int:well_id>", methods=["DELETE"])
+def delete_sim_well(well_id):
+    result = delete_well(well_id)
+    if result.get("success"):
+        return jsonify({"message": "Well deleted"}), 200
+    return jsonify({"error": "Failed to delete well"}), 500

@@ -41,3 +41,24 @@ def fetch_alert_log():
     except Exception as e:
         print("Error fetching alert log:", e)
         return []
+    
+def create_well(name, location):
+    try:
+        res = requests.post(
+            f"{SIM_API_BASE}/api/wells",
+            json={"name": name, "location": location}
+        )
+        res.raise_for_status()
+        return res.json()
+    except Exception as e:
+        print("Error creating well:", e)
+        return None
+    
+def delete_well(well_id):
+    try: 
+        res = requests.delete(f"{SIM_API_BASE}/api/wells/{well_id}")
+        res.raise_for_status()
+        return {"success": True}
+    except Exception as e:
+        print("Error deleting well:", e)
+        return {"success": False}
