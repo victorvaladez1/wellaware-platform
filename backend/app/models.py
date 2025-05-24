@@ -20,3 +20,12 @@ class CrewMember(db.Model):
     email = db.Column(db.String(120), unique=True)
     assigned_well_id = db.Column(db.Integer)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+class MaintenanceLog(db.Model):
+    __tablename__ = "maintenance_logs"
+
+    id = db.Column(db.String, primary_key=True, default=lambda: str(uuid.uuid4()))
+    well_id = db.Column(db.Integer, nullable=False)
+    crew_member_id = db.Column(db.Integer, nullable=False)
+    description = db.Column(db.Text, nullable=False)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
