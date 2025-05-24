@@ -1,9 +1,13 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from .config import Config
+from app.extensions import db
 
-db = SQLAlchemy()
+from app.routes.notes import notes_bp
+from app.routes.sim_routes import sim_routes
+from app.routes.crew_routes import crew_bp
+from app.routes.main import main
+
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
@@ -11,13 +15,9 @@ def create_app():
     db.init_app(app)
     CORS(app)
 
-    from .routes.notes import notes_bp
     app.register_blueprint(notes_bp)
-
-    from app.routes.sim_routes import sim_routes
     app.register_blueprint(sim_routes)
-
-    from .routes.main import main
+    app.register_blueprint(crew_bp)
     app.register_blueprint(main)
 
     return app
