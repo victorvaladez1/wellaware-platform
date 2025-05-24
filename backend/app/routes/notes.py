@@ -1,4 +1,5 @@
 from flask import Blueprint, request, jsonify
+from app.utils.decorators import admin_required
 from app.models import db, WellNote
 
 notes_bp = Blueprint("notes", __name__)

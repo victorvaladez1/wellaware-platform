@@ -1,4 +1,5 @@
 from flask import Blueprint, request, jsonify
+from app.utils.decorators import admin_required
 from app.models import db, CrewMember
 
 crew_bp = Blueprint("crew", __name__)
@@ -42,6 +43,7 @@ def add_crew_member():
     return jsonify({"message": "Crew member added"}), 201
 
 @crew_bp.route("/api/crew/<int:id>", methods=["DELETE"])
+@admin_required
 def delete_crew_member(id):
     member = CrewMember.query.get(id)
     if not member:

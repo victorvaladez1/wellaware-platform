@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, request
+from app.utils.decorators import admin_required
 from app.services.sim_api import (
     fetch_wells,
     fetch_readings,

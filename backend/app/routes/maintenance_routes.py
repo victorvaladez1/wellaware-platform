@@ -1,4 +1,5 @@
 from flask import Blueprint, request, jsonify
+from app.utils.decorators import admin_required
 from app.models import db, MaintenanceLog
 
 maintenance_bp = Blueprint("maintenance", __name__)

@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify
+from app.utils.decorators import admin_required
 
 main = Blueprint("main", __name__)
 
