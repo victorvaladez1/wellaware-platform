@@ -24,8 +24,8 @@ class CrewMember(db.Model):
 class MaintenanceLog(db.Model):
     __tablename__ = "maintenance_logs"
 
-    id = db.Column(db.String, primary_key=True, default=lambda: str(uuid.uuid4()))
+    id = db.Column(db.Integer, primary_key=True)
     well_id = db.Column(db.Integer, nullable=False)
-    crew_member_id = db.Column(db.Integer, nullable=False)
     description = db.Column(db.Text, nullable=False)
+    performed_by = db.Column(db.String(100), nullable=False)
     timestamp = db.Column(db.DateTime, default=datetime.utcnow)

@@ -6,6 +6,7 @@ from app.extensions import db
 from app.routes.notes import notes_bp
 from app.routes.sim_routes import sim_routes
 from app.routes.crew_routes import crew_bp
+from app.routes.maintenance_routes import maintenance_bp
 from app.routes.main import main
 
 def create_app():
@@ -18,6 +19,7 @@ def create_app():
     app.register_blueprint(notes_bp)
     app.register_blueprint(sim_routes)
     app.register_blueprint(crew_bp)
+    app.register_blueprint(maintenance_bp)
     app.register_blueprint(main)
 
     return app
