@@ -14,6 +14,9 @@ def create_app():
     from .routes.notes import notes_bp
     app.register_blueprint(notes_bp)
 
+    from app.routes.sim_routes import sim_routes
+    app.register_blueprint(sim_routes)
+
     from .routes.main import main
     app.register_blueprint(main)
 
