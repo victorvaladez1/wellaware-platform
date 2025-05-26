@@ -51,3 +51,22 @@ def delete_crew_member(id):
     db.session.delete(member)
     db.session.commit()
     return jsonify({"message": "Crew member deleted"}), 200
+
+@crew_bp.route("/api/crew/<int:id>", methods=["PATCH"])
+@admin_required
+def update_crew_member(id):
+    member = CrewMember.query.get(id)
+    if not member:
+        return jsonify({"error": "Crew member not found"}), 404
+    
+    data = request.get_json()
+
+    member.name = data.get("name", member.name)
+    member.role = data.get("role", member.role)
+    member.phone = data.get("phone", member.phone)
+    member.email = data.get("email", member.email)
+    member.assigned_well_id = data.get("assigned_well_id", member.assigned_well_id)
+
+    db.session.commit()
+
+    return jsonify({"message": "Crew member updated"}), 200
