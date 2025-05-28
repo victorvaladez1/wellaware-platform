@@ -122,9 +122,3 @@ python run.py
 - 🧑‍🔧 Maintenance types & categories
 - 🧾 Export logs to CSV
 - 🏭 Live mode: Replace sim API with real IoT data source (future-ready)
-
----
-
-## 📄 License
-
-MIT License — free to use for educational and commercial projects.
