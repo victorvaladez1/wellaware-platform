@@ -121,4 +121,3 @@ python run.py
 - 🔒 Token refresh + logout flow
 - 🧑‍🔧 Maintenance types & categories
 - 🧾 Export logs to CSV
-- 🏭 Live mode: Replace sim API with real IoT data source (future-ready)
