@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import MaintenanceLogs from "./pages/MaintenanceLogs";
+import AddMaintenanceLog from "./pages/AddMaintenanceLog";
 import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
@@ -18,6 +19,14 @@ function App() {
           }
         />
         <Route path="/maintenance" element={<MaintenanceLogs />} />
+        <Route
+          path="/add-maintenance"
+          element={
+            <ProtectedRoute>
+              <AddMaintenanceLog />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </Router>
   )
