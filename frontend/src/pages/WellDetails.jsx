@@ -8,19 +8,34 @@ function WellDetails() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  useEffect(() => {
+  const [readings, setReadings] = useState([]);
+  const [alerts, setAlerts] = useState([]);
+
+    useEffect(() => {
     axios
-      .get(`http://localhost:5001/api/sim/wells/${id}`)
-      .then((res) => {
+        .get(`http://localhost:5001/api/sim/wells/${id}`)
+        .then((res) => {
         setWell(res.data);
         setLoading(false);
-      })
-      .catch((err) => {
+        })
+        .catch((err) => {
         console.error("Failed to fetch well data:", err);
         setError("Failed to load well details.");
         setLoading(false);
-      });
-  }, [id]);
+        });
+    axios
+        .get(`http://localhost:5001/api/sim/readings?well_id=${id}`)
+        .then((res) => setReadings(res.data))
+        .catch((err) => console.error("Failed to fetch readings:", err));
+
+    axios
+        .get("http://localhost:5001/api/sim/alerts")
+        .then((res) => {
+        const related = res.data.filter((a) => a.well_id === Number(id));
+        setAlerts(related);
+        })
+        .catch((err) => console.error("Failed to fetch alerts:", err));
+    }, [id]);
 
   if (loading) return <p>Loading well data...</p>;
   if (error) return <p style={{ color: "red" }}>{error}</p>;
@@ -32,6 +47,35 @@ function WellDetails() {
         <li><strong>Name:</strong> {well.name}</li>
         <li><strong>Location:</strong> {well.location}</li>
       </ul>
+
+        <h3>Live Readings</h3>
+            {readings.length === 0 ? (
+            <p>No readings available.</p>
+            ) : (
+            <ul>
+                {readings.map((r, i) => (
+                <li key={i}>
+                    <strong>Pressure:</strong> {r.pressure} psi,&nbsp;
+                    <strong>Temp:</strong> {r.temperature} °F,&nbsp;
+                    <strong>Output:</strong> {r.output} bbl/day&nbsp;
+                    <em>({new Date(r.timestamp).toLocaleTimeString()})</em>
+                </li>
+                ))}
+            </ul>
+            )}
+
+            <h3>Active Alerts</h3>
+            {alerts.length === 0 ? (
+            <p>No alerts.</p>
+            ) : (
+            <ul>
+                {alerts.map((a, i) => (
+                <li key={i} style={{ color: "red" }}>
+                    <strong>{a.type}:</strong> {a.message}
+                </li>
+                ))}
+            </ul>
+            )}
     </div>
   );
 }
