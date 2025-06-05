@@ -6,6 +6,7 @@ import AddMaintenanceLog from "./pages/AddMaintenanceLog";
 import WellDetails from "./pages/WellDetails";
 import WellsList from "./pages/WellsList";
 import AddWell from "./pages/AddWell";
+import EditWell from "./pages/EditWell";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
@@ -37,6 +38,14 @@ function App() {
           element={
             <ProtectedRoute>
               <AddWell />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/wells/:id/edit"
+          element={
+            <ProtectedRoute>
+              <EditWell />
             </ProtectedRoute>
           }
         />

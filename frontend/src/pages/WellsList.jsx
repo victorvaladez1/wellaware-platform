@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 
@@ -8,6 +9,7 @@ function WellsList() {
   const [error, setError] = useState("");
 
   const token = localStorage.getItem("token");
+  const navigate = useNavigate();
   const isAdmin = (() => {
     if (!token) return false;
     try {
@@ -64,6 +66,11 @@ function WellsList() {
                             Delete
                         </button>
                     </>
+                )}
+                {isAdmin && (
+                  <button onClick={() => navigate(`/wells/${well.id}/edit`)}>
+                    Edits
+                  </button>
                 )}
             </li>
           ))}
