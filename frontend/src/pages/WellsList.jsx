@@ -1,10 +1,22 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 
 function WellsList() {
   const [wells, setWells] = useState([]);
   const [error, setError] = useState("");
+
+  const token = localStorage.getItem("token");
+  const isAdmin = (() => {
+    if (!token) return false;
+    try {
+        const decoded = jwtDecode(token);
+        return decoded.role === "admin";
+    } catch {
+        return false;
+    }
+    })();
 
   useEffect(() => {
     axios
@@ -16,6 +28,23 @@ function WellsList() {
       });
   }, []);
 
+  const handleDelete = async (wellId) => {
+    if (!window.confirm("Are you sure you want to delete this well?")) return;
+
+    try {
+        await axios.delete(`http://localhost:5001/api/sim/wells/${wellId}`, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+        });
+        setWells(wells.filter((well) => well.id !== wellId));
+    } catch (err) {
+        console.error("Failed to delete well:", err);
+        alert("Error deleting well.");
+    }
+  };
+
+
   return (
     <div>
       <h2>All Wells</h2>
@@ -26,9 +55,16 @@ function WellsList() {
         <ul>
           {wells.map((well) => (
             <li key={well.id}>
-              <Link to={`/well/${well.id}`}>
                 <strong>{well.name}</strong> - {well.location}
-              </Link>
+                    &nbsp; <a href={`/well/${well.id}`}>View</a>
+                        {isAdmin && (
+                        <>
+                        &nbsp; | &nbsp;
+                        <button style={{ color: "red" }} onClick={() => handleDelete(well.id)}>
+                            Delete
+                        </button>
+                    </>
+                )}
             </li>
           ))}
         </ul>
