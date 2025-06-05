@@ -4,6 +4,7 @@ import Dashboard from "./pages/Dashboard";
 import MaintenanceLogs from "./pages/MaintenanceLogs";
 import AddMaintenanceLog from "./pages/AddMaintenanceLog";
 import WellDetails from "./pages/WellDetails";
+import WellsList from "./pages/WellsList";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           }
         />
         <Route path="/well/:id" element={<WellDetails />} />
+        <Route path="/wells" element={<WellsList />} />
       </Routes>
     </Router>
   );
