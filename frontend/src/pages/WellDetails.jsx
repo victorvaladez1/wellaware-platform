@@ -10,6 +10,8 @@ function WellDetails() {
 
   const [readings, setReadings] = useState([]);
   const [alerts, setAlerts] = useState([]);
+  const [alertLog, setAlertLog] = useState([]);
+
 
     useEffect(() => {
     axios
@@ -35,6 +37,14 @@ function WellDetails() {
         setAlerts(related);
         })
         .catch((err) => console.error("Failed to fetch alerts:", err));
+
+    axios
+        .get("http://localhost:5001/api/sim/alert-log")
+        .then((res) => {
+            const filtered = res.data.filter((entry) => entry.well_id === Number(id));
+            setAlertLog(filtered);
+        })
+        .catch((err) => console.error("Failed to fetch alert log:", err));
     }, [id]);
 
   if (loading) return <p>Loading well data...</p>;
@@ -76,6 +86,20 @@ function WellDetails() {
                 ))}
             </ul>
             )}
+
+            <h3>Alert History</h3>
+                {alertLog.length === 0 ? (
+                <p>No past alerts.</p>
+                ) : (
+                <ul>
+                    {alertLog.map((log) => (
+                    <li key={log.id}>
+                        <strong>{log.alert_type}</strong> —{" "}
+                        {new Date(log.timestamp).toLocaleString()}
+                    </li>
+                    ))}
+                </ul>
+                )}
     </div>
   );
 }
