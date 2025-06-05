@@ -17,6 +17,14 @@ def get_sim_wells():
     wells = fetch_wells()
     return jsonify(wells)
 
+@sim_routes.route("/api/sim/wells/<int:well_id>", methods=["GET"])
+def get_sim_well_by_id(well_id):
+    wells = fetch_wells()
+    for well in wells:
+        if well.get("id") == well_id:
+            return jsonify(well), 200
+    return jsonify({"error": "Well not found"}), 404
+
 @sim_routes.route("/api/sim/readings", methods=["GET"])
 def get_sim_readings():
     well_id = request.args.get("well_id")

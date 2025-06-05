@@ -1,9 +1,10 @@
-import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import MaintenanceLogs from "./pages/MaintenanceLogs";
 import AddMaintenanceLog from "./pages/AddMaintenanceLog";
-import ProtectedRoute from './components/ProtectedRoute';
+import WellDetails from "./pages/WellDetails";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -27,9 +28,10 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="/well/:id" element={<WellDetails />} />
       </Routes>
     </Router>
-  )
+  );
 }
 
 export default App;
