@@ -95,6 +95,7 @@
   font-size: 1rem;
   background-color: #fefefe;
   transition: border 0.2s ease;
+  box-sizing: border-box;
 }
 
 .login-form-card input:focus {
@@ -171,4 +172,50 @@
   .mobile-branding-banner {
     display: block;
   }
+}
+
+.input-with-icon {
+  position: relative;
+  width: 100%;
+}
+
+.input-with-icon input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  padding-right: 3rem; 
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #fefefe;
+  transition: border 0.2s ease;
+}
+
+.input-with-icon input:focus {
+  border-color: #f97316;
+  outline: none;
+}
+
+.toggle-password {
+  position: absolute;
+  top: 40%;
+  right: 0.85rem;
+  transform: translateY(-50%);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.25rem;
+  width: 1.25rem;
+  color: #4b5563;
+}
+
+.eye-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  stroke-width: 1.75;
+}
+
+.input-with-icon input {
+  padding: 0.7rem 1rem;
+  padding-right: 3rem;
 }
