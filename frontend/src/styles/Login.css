@@ -219,3 +219,9 @@
   padding: 0.7rem 1rem;
   padding-right: 3rem;
 }
+
+.login-logo {
+  width: 120px;
+  height: auto;
+  margin-bottom: 1rem;
+}

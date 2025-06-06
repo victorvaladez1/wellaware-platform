@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import logo from "../assets/logo.png";
 import "../styles/Login.css";
 
 const Login = () => {
@@ -33,7 +34,7 @@ const Login = () => {
   return (
     <div className="login-page">
       <div className="login-left desktop-branding">
-        {/* <img src={logo} alt="WellAware Logo" className="login-logo" /> */}
+        <img src={logo} alt="WellAware Logo" className="login-logo" />
         <div className="orange-text">
           <h1>WellAware</h1>
         </div>
@@ -42,7 +43,7 @@ const Login = () => {
 
       <div className="login-right">
         <div className="mobile-branding-banner">
-          {/* <img src={logo} alt="WellAware Logo" className="login-logo" /> */}
+          <img src={logo} alt="WellAware Logo" className="login-logo" />
           <div className="orange-text">
             <h1>WellAware</h1>
           </div>
