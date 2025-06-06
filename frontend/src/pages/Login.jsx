@@ -19,7 +19,11 @@ const Login = () => {
       const res = await axios.post("http://localhost:5001/api/auth/login", formData);
       const token = res.data.access_token;
       localStorage.setItem("token", token);
-      navigate("/dashboard"); // route you’ll define later
+
+      // ✅ small delay for React state or routing system to fully flush
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 100); 
     } catch (err) {
       console.error(err);
       setError("Invalid credentials");
