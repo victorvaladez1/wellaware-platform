@@ -8,10 +8,12 @@ import WellsList from "./pages/WellsList";
 import AddWell from "./pages/AddWell";
 import EditWell from "./pages/EditWell";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <Router>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Login />} />
         <Route
