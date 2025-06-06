@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import MaintenanceLogs from "./pages/MaintenanceLogs";
@@ -10,10 +10,13 @@ import EditWell from "./pages/EditWell";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Navbar from "./components/Navbar";
 
-function App() {
+function AppRoutes() {
+  const location = useLocation();
+  const isLoginPage = location.pathname === "/";
+
   return (
-    <Router>
-      <Navbar />
+    <>
+      {!isLoginPage && <Navbar />}
       <Routes>
         <Route path="/" element={<Login />} />
         <Route
@@ -44,7 +47,7 @@ function App() {
           }
         />
         <Route
-          path="/wells/:id/edit"
+          path="/well/:id/edit"
           element={
             <ProtectedRoute>
               <EditWell />
@@ -52,6 +55,14 @@ function App() {
           }
         />
       </Routes>
+    </>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppRoutes />
     </Router>
   );
 }
