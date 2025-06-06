@@ -1,0 +1,35 @@
+.navbar {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navbar a {
+  color: #1a1a1a;
+  font-weight: 500;
+}
+
+.navbar a:hover {
+  color: #dc7c00;
+}
+
+.logout-btn {
+  background-color: #dc7c00;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.logout-btn:hover {
+  background-color: #b76300;
+}
