@@ -96,6 +96,7 @@
   background-color: #fefefe;
   transition: border 0.2s ease;
   box-sizing: border-box;
+  color: black;
 }
 
 .login-form-card input:focus {
