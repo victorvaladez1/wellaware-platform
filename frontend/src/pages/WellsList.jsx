@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
+import "../styles/WellsList.css";
 
 function WellsList() {
   const [wells, setWells] = useState([]);
@@ -10,15 +10,16 @@ function WellsList() {
 
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
+
   const isAdmin = (() => {
     if (!token) return false;
     try {
-        const decoded = jwtDecode(token);
-        return decoded.role === "admin";
+      const decoded = jwtDecode(token);
+      return decoded.role === "admin";
     } catch {
-        return false;
+      return false;
     }
-    })();
+  })();
 
   useEffect(() => {
     axios
@@ -34,44 +35,41 @@ function WellsList() {
     if (!window.confirm("Are you sure you want to delete this well?")) return;
 
     try {
-        await axios.delete(`http://localhost:5001/api/sim/wells/${wellId}`, {
+      await axios.delete(`http://localhost:5001/api/sim/wells/${wellId}`, {
         headers: {
-            Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
-        });
-        setWells(wells.filter((well) => well.id !== wellId));
+      });
+      setWells(wells.filter((well) => well.id !== wellId));
     } catch (err) {
-        console.error("Failed to delete well:", err);
-        alert("Error deleting well.");
+      console.error("Failed to delete well:", err);
+      alert("Error deleting well.");
     }
   };
 
-
   return (
-    <div>
+    <div className="wells-page">
       <h2>All Wells</h2>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p className="wells-error">{error}</p>}
       {wells.length === 0 ? (
         <p>No wells available.</p>
       ) : (
-        <ul>
+        <ul className="well-list">
           {wells.map((well) => (
-            <li key={well.id}>
-                <strong>{well.name}</strong> - {well.location}
-                    &nbsp; <a href={`/well/${well.id}`}>View</a>
-                        {isAdmin && (
-                        <>
-                        &nbsp; | &nbsp;
-                        <button style={{ color: "red" }} onClick={() => handleDelete(well.id)}>
-                            Delete
-                        </button>
-                    </>
-                )}
+            <li className="well-card" key={well.id}>
+              <div className="well-info">
+                <span className="well-name">{well.name}</span>
+                <span className="well-location"> - {well.location}</span>
+              </div>
+              <div className="well-actions">
+                <Link className="view-link" to={`/well/${well.id}`}>View</Link>
                 {isAdmin && (
-                  <button onClick={() => navigate(`/wells/${well.id}/edit`)}>
-                    Edits
-                  </button>
+                  <>
+                    <button className="delete-btn" onClick={() => handleDelete(well.id)}>Delete</button>
+                    <button className="edit-btn" onClick={() => navigate(`/wells/${well.id}/edit`)}>Edit</button>
+                  </>
                 )}
+              </div>
             </li>
           ))}
         </ul>
