@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
+import "../styles/EditWell.css";
 
 function EditWell() {
   const { id } = useParams();
@@ -54,31 +55,27 @@ function EditWell() {
     }
   };
 
-  if (!isAdmin) return <p style={{ color: "red" }}>Access denied.</p>;
+  if (!isAdmin) return <p className="edit-well-access-denied">Access denied.</p>;
 
   return (
-    <div>
-      <h2>Edit Well #{id}</h2>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <input
-            type="text"
-            value={name}
-            placeholder="Well Name"
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <input
-            type="text"
-            value={location}
-            placeholder="Location"
-            onChange={(e) => setLocation(e.target.value)}
-            required
-          />
-        </div>
+    <div className="edit-well-container">
+      <h2 className="edit-well-title">Edit Well #{id}</h2>
+      {error && <p className="edit-well-error">{error}</p>}
+      <form className="edit-well-form" onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={name}
+          placeholder="Well Name"
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
+        <input
+          type="text"
+          value={location}
+          placeholder="Location"
+          onChange={(e) => setLocation(e.target.value)}
+          required
+        />
         <button type="submit">Update Well</button>
       </form>
     </div>

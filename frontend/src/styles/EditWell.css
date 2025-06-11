@@ -1,0 +1,65 @@
+.edit-well-container {
+  max-width: 480px;
+  margin: 3rem auto;
+  padding: 2.5rem;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.edit-well-title {
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+  color: #1f2937;
+}
+
+.edit-well-error {
+  color: #dc2626;
+  background-color: #fef2f2;
+  border: 1px solid #fca5a5;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.edit-well-form input {
+  width: 100%;
+  padding: 0.85rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background-color: #f9fafb;
+  color: #1f2937;
+  box-sizing: border-box;
+}
+
+.edit-well-form input:focus {
+  outline: none;
+  border-color: #fb923c;
+}
+
+.edit-well-form button {
+  width: 100%;
+  padding: 0.9rem;
+  background-color: #f97316;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.edit-well-form button:hover {
+  background-color: #ea580c;
+}
+
+.edit-well-access-denied {
+  text-align: center;
+  color: red;
+  margin-top: 2rem;
+}

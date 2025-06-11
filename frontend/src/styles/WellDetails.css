@@ -1,0 +1,76 @@
+.well-details-container {
+  max-width: 800px;
+  margin: 3rem auto;
+  padding: 2.5rem;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.well-details-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  color: #1f2937;
+}
+
+.well-info {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-left: 4px solid #f59e0b;
+  background-color: #f9fafb;
+  border-radius: 8px;
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.well-info strong {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.live-readings {
+  margin: 2rem 0;
+  padding: 1rem;
+  background-color: #fefce8;
+  border-left: 4px solid #facc15;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.alert-section {
+  margin-top: 2rem;
+}
+
+.alert-section h4 {
+  font-size: 1.25rem;
+  color: #1f2937;
+  margin-bottom: 0.75rem;
+}
+
+.alert-section .alert-box {
+  padding: 0.75rem;
+  background-color: #fff1f2;
+  border-left: 4px solid #f87171;
+  border-radius: 8px;
+  color: #991b1b;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.alert-history {
+  margin-top: 1rem;
+}
+
+.alert-history .history-item {
+  padding: 0.75rem 1rem;
+  background-color: #f9fafb;
+  border-left: 4px solid #6b7280;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: #374151;
+}
