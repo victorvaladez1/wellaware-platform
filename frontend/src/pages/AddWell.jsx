@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import "../styles/AddWell.css";
 
 function AddWell() {
   const [name, setName] = useState("");
@@ -41,14 +42,14 @@ function AddWell() {
     }
   };
 
-  if (!isAdmin) return <p style={{ color: "red" }}>Access denied.</p>;
+  if (!isAdmin) return <p className="access-denied">Access denied.</p>;
 
   return (
-    <div>
-      <h2>Add New Well</h2>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <div>
+    <div className="add-well-container">
+      <div className="add-well-card">
+        <h2>Add New Well</h2>
+        {error && <p className="form-error">{error}</p>}
+        <form onSubmit={handleSubmit}>
           <input
             type="text"
             placeholder="Well Name"
@@ -56,8 +57,6 @@ function AddWell() {
             onChange={(e) => setName(e.target.value)}
             required
           />
-        </div>
-        <div>
           <input
             type="text"
             placeholder="Location"
@@ -65,9 +64,9 @@ function AddWell() {
             onChange={(e) => setLocation(e.target.value)}
             required
           />
-        </div>
-        <button type="submit">Create Well</button>
-      </form>
+          <button type="submit">Create Well</button>
+        </form>
+      </div>
     </div>
   );
 }
