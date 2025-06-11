@@ -1,0 +1,33 @@
+.dashboard-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    font-family: 'Segoe UI', Tamba, Geneva, Verdana, sans-serif;
+}
+
+.dashboard-container h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #1f2937;
+}
+
+.crew-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.crew-list li {
+    background-color: white;
+    margin-bottom: 1rem;
+    padding: 1rem 1.5rem;
+    border-left: 5px solid #f59e0b;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    border-radius: 6px;
+    transition: transform 0.2s;
+}
+
+.crew-list li:hover {
+    transform: scale(1.02);
+    cursor: pointer;
+}
