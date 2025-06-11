@@ -9,6 +9,7 @@ import AddWell from "./pages/AddWell";
 import EditWell from "./pages/EditWell";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Navbar from "./components/Navbar";
+import "./App.css";
 
 function AppRoutes() {
   const location = useLocation();
@@ -17,44 +18,52 @@ function AppRoutes() {
   return (
     <>
       {!isLoginPage && <Navbar />}
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="/maintenance" element={<MaintenanceLogs />} />
-        <Route
-          path="/add-maintenance"
-          element={
-            <ProtectedRoute>
-              <AddMaintenanceLog />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="/well/:id" element={<WellDetails />} />
-        <Route path="/wells" element={<WellsList />} />
-        <Route
-          path="/wells/new"
-          element={
-            <ProtectedRoute>
-              <AddWell />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/well/:id/edit"
-          element={
-            <ProtectedRoute>
-              <EditWell />
-            </ProtectedRoute>
-          }
-        />
-      </Routes>
+
+      {isLoginPage ? (
+        <Routes>
+          <Route path="/" element={<Login />} />
+        </Routes>
+      ) : (
+        <div className="layout-wrapper">
+          <Routes>
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/maintenance" element={<MaintenanceLogs />} />
+            <Route
+              path="/add-maintenance"
+              element={
+                <ProtectedRoute>
+                  <AddMaintenanceLog />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/well/:id" element={<WellDetails />} />
+            <Route path="/wells" element={<WellsList />} />
+            <Route
+              path="/wells/new"
+              element={
+                <ProtectedRoute>
+                  <AddWell />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/well/:id/edit"
+              element={
+                <ProtectedRoute>
+                  <EditWell />
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
+        </div>
+      )}
     </>
   );
 }
